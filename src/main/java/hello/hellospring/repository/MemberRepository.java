@@ -11,7 +11,7 @@ public interface MemberRepository {
     //ID로 찾아오기
     Optional<Member> findById(Long id);
     //이름으로 찾아오기
-    Optional<Member> findBuName(String name);
+    Optional<Member> findByName(String name);
     //저장되어 있는 모든 회원리스트 불러오기
     List<Member> findAll();
 }
