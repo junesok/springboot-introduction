@@ -8,7 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository; //= new MemberRepository() 생략;
+
+    //같은 리포지토리를 사용하기 위해 추가 - 외부에서 데이터를 가져오게 하기 위해서
+    public MemberService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
 
     //회원가입
     public Long join(Member member){
@@ -25,7 +30,6 @@ public class MemberService {
         //위 두 가지를 합치면
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
-
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
 
